@@ -55,10 +55,14 @@ SELECT * FROM board WHERE content IS NOT NULL;
 -- and, or 사용법
 SELECT * FROM board WHERE writer = 'John Doe' AND created_at >= '2024-01-01';
 SELECT * FROM board WHERE writer = 'John Doe' OR writer = 'Jane Smith';
+
 -- order by 사용법
--- desc: 내림차순, asc: 오름차순. 아무것도 붙이지 않는다면 기본값은 오름차순(asc)
+-- desc: 내림차순, asc: 오름차순. 아무것도 붙이지 않는다면 기본값은 Primary Key 기준으로 오름차순(asc)
 SELECT * FROM board ORDER BY created_at DESC;
 SELECT * FROM board ORDER BY title ASC;
+-- multiple column order by 사용법. 여러 컬럼 정렬 시 첫 번째 컬럼 기준 정렬 후, 동일한 값이 있을 경우 두 번째 컬럼 기준으로 정렬
+SELECT * FROM board ORDER BY writer ASC, created_at DESC;
+
 -- limit 사용법
 SELECT * FROM board LIMIT 10;
 -- offset 사용법
@@ -79,3 +83,10 @@ SELECT a.name AS author, b.title AS post_title
 FROM user a
 JOIN post b ON a.user_id = b.user_id
 WHERE a.user_id = 'user123';
+
+-- alias 사용법
+SELECT u.name AS author_name, p.title AS post_title
+FROM user u
+JOIN post p ON u.user_id = p.user_id;
+
+-- 프로그래머스 SQL 문제 풀이
