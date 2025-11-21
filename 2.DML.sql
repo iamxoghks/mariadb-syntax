@@ -88,5 +88,3 @@ WHERE a.user_id = 'user123';
 SELECT u.name AS author_name, p.title AS post_title
 FROM user u
 JOIN post p ON u.user_id = p.user_id;
-
--- 프로그래머스 SQL 문제 풀이
