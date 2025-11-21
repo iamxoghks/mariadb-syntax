@@ -7,8 +7,10 @@ float : 4 byte floating point number
 double : 8 byte floating point number
 decimal : fixed-point number, 정확한 소수점 계산이 필요할 때 사용 (예: 금융 계산)
 char(n) : 고정 길이 문자열, n은 최대 255까지 지정 가능
-varchar(n) : 가변 길이 문자열, n은 최대 65,535까지 지정 가능 (실제 저장 길이에 따라 공간 사용)
-text : 가변 길이 문자열, 최대 65,535 바이트
+varchar(n) : 가변 길이 문자열, n은 최대 65,535까지 지정 가능 (실제 저장 길이에 따라 공간 사용), 메모리 위주 저장 -> 조회성능 빠름
+text : 가변 길이 문자열, 최대 65,535 바이트, storage 위주 저장. 조회성능 varchar에 비해 느림 = 자주 조회하지 않는 장문의 데이터는 text로!
+=> 길이가 정해진 짧은 단어는 char 또는 varchar, 장문의 데이터는 text 또는 varchar,그 외 모두 varchar 사용 권장.
+
 mediumtext : 가변 길이 문자열, 최대 16,777,215 바이트
 longtext : 가변 길이 문자열, 최대 4,294,967,295 바이트
 date : 날짜 값 (YYYY-MM-DD)
