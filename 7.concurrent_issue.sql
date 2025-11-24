@@ -37,5 +37,5 @@ call concurrent_test1();
 -- terminal에서 실행
 select post_count from user where user_id=1 for update;
 
--- serializable : 트랜잭션이 순차적으로 실행되는 것처럼 동작, 동시성 성능 저하
+-- serializable : 모든 트랜잭션이 순차적으로 실행되는 것처럼 동작, 동시성 성능 저하
 -- 가장 엄격한 isolation level
