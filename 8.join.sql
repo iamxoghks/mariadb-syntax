@@ -121,5 +121,5 @@ SELECT name, count(*) as count from ANIMAL_INS where name is not null group by n
 SELECT b.category, sum(bs.sales) as total_sales from BOOK_SALES as bs join BOOK as b where b.book_id = bs.book_id and bs.sales_date like '2022-01%' group by b.category order by b.category asc;
 -- 조건에 맞는 사용자와 총 거래금액 조회하기
 -- 코드를 입력하세요
-SELECT u.user_id, u.nickname, sum(b.price) as total_sales from used_goods_user as u join used_goods_board as b where u.user_id = b.writer_id and status = 'DONE' group by u.user_id having total_sales >= 700000 order by total_sales
+SELECT u.user_id, u.nickname, sum(b.price) as total_sales from used_goods_user as u join used_goods_board as b where u.user_id = b.writer_id and status = 'DONE' group by u.user_id having total_sales >= 700000 order by total_sales;
 
