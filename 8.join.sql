@@ -123,3 +123,17 @@ SELECT b.category, sum(bs.sales) as total_sales from BOOK_SALES as bs join BOOK 
 -- 코드를 입력하세요
 SELECT u.user_id, u.nickname, sum(b.price) as total_sales from used_goods_user as u join used_goods_board as b where u.user_id = b.writer_id and status = 'DONE' group by u.user_id having total_sales >= 700000 order by total_sales;
 
+-- 다중열 group by 예제
+-- group by ~column1~, ~column2~ : 여러 column을 기준으로 그룹화
+-- 사용자 아이디와 작성일자를 기준으로 post 작성 개수 출력
+select user_id, DATE_FORMAT(created_time, '%Y-%m-%d') as date, count(*) as post_count from post group by user_id, date;
+-- post table에서 작성자별로 구분하여 같은 제목의 글의 개수를 출력하시오
+select user_id, title, count(*) as count from post group by user_id, title;
+-- 재구매가 일어난 상품과 회원 리스트 구하기
+-- 코드를 입력하세요
+SELECT user_id, product_id from ONLINE_SALE group by user_id, product_id having count(product_id) >= 2 order by user_id asc, product_id desc;
+
+-- index
+-- index 생성시 id, name 등 column이 기준이 된다.
+-- index를 활용하기 위해선 'where column = value' 형태로 조건을 걸어야 한다.
+-- index는 삭제, 생성이 아닌 조회가 빈번한 경우에 index를 만드는 것이 좋다
