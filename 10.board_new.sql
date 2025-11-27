@@ -45,3 +45,18 @@ select upl.post_id, p.title, p.content, upl.user_id, u.name
     join board.USER_LIST u on upl.user_id = u.user_id
     join board.POST_LIST p on p.post_id = upl.post_id
 order by upl.post_id;
+
+
+실습
+
+과정
+1. 엑셀로 더미데이터 넣은 캡쳐본 제출
+2. ERD 설계 -> 캡쳐 제출
+3. ERD 기반의 DB 구축 및 테스트데이터 삽입
+
+테이블
+
+SQL문
+1. 회원가입
+2. 상품등록
+3. 상품조회
