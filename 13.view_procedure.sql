@@ -205,3 +205,10 @@ foreign keys and encryption for tables
 Non-transactional engine with good performance
 small data footprint
 조회 성능 빠름.
+
+
+-- DB 서버 구성
+-- 클러스터링 : 여러 서버를 묶는다 -> 1대의 스토리지(Disk)와 여러대의 서버(DB program ex. MariaDB)를 운영한다
+-- 레플리카 : 복제 서버를 둔다
+-- 샤딩 : 서버를 나눈다
+-- 샤딩은 서버가 늘어날 때 아이디값 관리가 복잡해지는 문제가 있어 레플리카를 많이 씀
