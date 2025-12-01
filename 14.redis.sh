@@ -48,9 +48,72 @@ flushsb
         set member:info:1 "{\"name\":\"hong\", \"email\":\"hong@daum.net\", \"age\":30}" ex 1000
 
 # list 자료구조
+# deque 또는 double-ended queue 와 유사한 구조
+# 왼쪽 끝과 오른쪽 끝에 데이터를 넣을 수 있음
+lpush students kim1
+lpush students lee1
+rpush students park1
+# list 조회
+lrange students 0 2 # 0부터 2번째까지 조회
+lrange studnets 0 -1 # 0부터 끝까지
+lrange students 0 0 # 0번째 값만 조회
+# list값 꺼내기 (꺼내면서 삭제 = pop)
+rpop students
+# A list에서 rpop 해서, B list에 lpush 할 수 있다
+rpoplpush A list B list
+rpoplpush students students
+# list에서 개수조회
+llen students
+# expire, ttl 문법 모두 사용 가능
 
-# set 자료구조
 
-# zset 자료구조
+# redis list 자료구조 실전 활용
+#   사례 1. 최근 방문한 상품 목록 조회
+        rpush user:1:recent:product_view apple
+        rpush user:1:recent:product_view banana
+        rpush user:1:recent:product_view orange
+        rpush user:1:recent:product_view melon
+        rpush user:1:recent:product_view mango
+        # 최근 본 상품목록 3개 조회
+        lrange user:1:recent:product_view -3 -1
+# 1. 웹사이트 방문
+# 2. 최근 살펴본 상품 리스트 등.
+
+# set 자료구조. 중복 없음, 순서 없음
+sadd memberlist m1
+sadd memberlist m2
+sadd memberlist m3
+sadd memberlist m3
+# set 조회
+smembers memberlist
+# set의 멤버 수 조회
+scard memberlist
+# redis set 자료구조 실전 활용
+    # 사례 1. SNS상 like 구현
+        sadd like:posting:1 abc@naver.com
+        sadd like:posting:1 bcd@naver.com
+        sadd like:posting:1 abc@naver.com
+        scard like:posting:1
+    # 사례 1. 1) 게시글 상세보기 조회 시 like 수 출력
+        scard like:posting:1 # like 개수 조회
+        sismember like:posting:1 abc@naver.com # 내가 like 눌렀는지 조회
+        sadd liek:posting:1 abc@naver.com # like 실행
+        srem like:posting:1 abc@naver.com # like 취소
+
+# zset 자료구조 sorted set
+# zset 조회: zrange(score 기준 오름차순 정렬), zrevrange(내림차순 정렬)
+# zset 자료구조 실전 활용
+    # 사례 1. 최근 본 상품 목록 -> value가 같은 값이 있으면, 중복이 제거되고 score 시간 값만 update 된다.
+    zadd user:1:recent:product_view 151400 apple
+    zadd user:1:recent:product_view 151401 banana
+    zadd user:1:recent:product_view 151402 orange
+    zadd user:1:recent:product_view 151403 melon
+    zadd user:1:recent:product_view 151404 mango
+    zadd user:1:recent:product_view 151405 melon
+
+    zrange user:1:recent:product_view -3 -1
+    zrevrange user:1:recent:product_view 0 2 withscores
+
+
 
 # hashes 자료구조
