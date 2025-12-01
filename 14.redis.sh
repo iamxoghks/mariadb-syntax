@@ -114,6 +114,14 @@ scard memberlist
     zrange user:1:recent:product_view -3 -1
     zrevrange user:1:recent:product_view 0 2 withscores
 
+# hashes 자료구조 : value가 map 형태. (key:value, key:value, ...)
+# set과 비교
+# set member:info:1 "{\"name\":\"hong\", \"email\":\"hong@daum.net\", \"age\":30}"
+# hashes
+hset member:info:1 name hong email rlaxoghks@naver.com age 30
+# hashes의 특정 값 조회
+hget member:info:1 name
+# hashes의 특정 값 수정
+hset member:info:1 name hong2
+# 빈번하게 변경되는 개체값을 저장시에는 hashes가 성능면에서 효율적이다
 
-
-# hashes 자료구조
